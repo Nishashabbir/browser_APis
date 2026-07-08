@@ -614,21 +614,21 @@ This pattern is used everywhere.
 
 Real-world examples where delegation shines
 
-✅ Todo apps
+ Todo apps
 
-✅ Dropdown menus
+ Dropdown menus
 
-✅ Data tables
+ Data tables
 
-✅ Chat applications
+ Chat applications
 
-✅ Infinite scrolling lists
+ Infinite scrolling lists
 
-✅ Dynamic cards
+ Dynamic cards
 
-✅ Notification panels
+ Notification panels
 
-✅ File explorers
+ File explorers
 
 Senior Developer Rule
 
@@ -662,3 +662,5 @@ bubbling
 closest()
 matches()
 stopPropagation()
+
+
