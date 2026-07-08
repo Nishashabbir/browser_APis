@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Accepted </title>
+</head>
+<body>
+    
+    <!-- Create a todo list where:
+
+Clicking Add creates a new <li>.
+Clicking any <li> removes it.
+Use event delegation for removing items. -->
+
+<button id="add"> ADD</button>
+<script>
+
+    let b= document.getElementById("add");
+    let u=document.createElement("ul");
+    document.body.appendChild(u)
+    b.addEventListener("click" , ()=>{
+        let i= document.createElement("li");
+        u.appendChild(i)
+        i.innerText="Python"
+    })
+
+// using event delegation listen on the parent rather than child 
+u.addEventListener("click" , (e)=>{
+    if (e.target.tagName==="LI"){ //browser returns the tagname as LI not li , so must write in uppercase or by default convert it into lower case 
+    //    if (e.target.tagName.toLowerCase()==="li"){
+        e.target.remove()
+        console.log(e.target)
+    }
+})
+
+// e.target = the actual element that started the event.
+
+
+</script>
+</body>
+</html>

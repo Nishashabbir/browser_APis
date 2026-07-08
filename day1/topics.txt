@@ -1,0 +1,278 @@
+
+
+
+Topic 3: Events 🔥
+
+Events make websites interactive.
+
+Without events, a website is just a static document.
+
+Examples:
+
+Clicking a button
+Typing in an input
+Submitting a form
+Scrolling
+Pressing a key
+Moving the mouse
+
+All of these are events.
+
+Basic Example
+
+HTML:
+
+<button id="btn">Click Me</button>
+
+JavaScript:
+
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", () => {
+  console.log("Button clicked!");
+});
+
+The browser is essentially saying:
+
+"When this event happens, run this function."
+
+Syntax
+element.addEventListener(eventName, callback);
+
+Example:
+
+btn.addEventListener("click", function () {
+  console.log("Clicked");
+});
+
+Or:
+
+btn.addEventListener("click", () => {
+  console.log("Clicked");
+});
+Common Events
+Click
+button.addEventListener("click", () => {
+  console.log("Clicked");
+});
+Double Click
+button.addEventListener("dblclick", () => {
+  console.log("Double clicked");
+});
+Input
+input.addEventListener("input", () => {
+  console.log(input.value);
+});
+
+Runs every time the user types.
+
+Change
+input.addEventListener("change", () => {
+  console.log(input.value);
+});
+
+Runs when the input loses focus after being changed.
+
+Submit
+form.addEventListener("submit", () => {
+  console.log("Submitted");
+});
+Keydown
+document.addEventListener("keydown", (e) => {
+  console.log(e.key);
+});
+Mouseover
+box.addEventListener("mouseover", () => {
+  console.log("Mouse entered");
+});
+The Event Object (e)
+button.addEventListener("click", (e) => {
+  console.log(e);
+});
+
+The browser passes information about the event.
+
+Which button was clicked?
+button.addEventListener("click", (e) => {
+  console.log(e.target);
+});
+Mouse position
+document.addEventListener("click", (e) => {
+  console.log(e.clientX);
+  console.log(e.clientY);
+});
+Key pressed
+document.addEventListener("keydown", (e) => {
+  console.log(e.key);
+});
+preventDefault()
+
+HTML:
+
+<form>
+  <button>Submit</button>
+</form>
+
+By default, submitting a form refreshes the page.
+
+Prevent it:
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("No refresh");
+});
+
+You'll use this constantly in forms.
+
+stopPropagation()
+
+Suppose:
+
+<div id="parent">
+  <button id="child">Click</button>
+</div>
+parent.addEventListener("click", () => {
+  console.log("Parent");
+});
+
+child.addEventListener("click", () => {
+  console.log("Child");
+});
+
+Click button:
+
+Child
+Parent
+
+Why?
+
+Because of event bubbling.
+
+Event Bubbling
+
+Events travel:
+
+button
+  ↓
+div
+  ↓
+body
+  ↓
+document
+
+Actually:
+
+Target element runs.
+Event bubbles upward.
+Stop it
+child.addEventListener("click", (e) => {
+  e.stopPropagation();
+  console.log("Child");
+});
+
+Now:
+
+Child
+
+Only.
+
+Event Capturing
+
+Normally:
+
+Target → Parent → Body
+
+Capturing:
+
+Body → Parent → Target
+
+Enable it:
+
+parent.addEventListener(
+  "click",
+  () => {
+    console.log("Parent");
+  },
+  true
+);
+
+The third argument enables capturing.
+
+Event Delegation ⭐ (Interview Favorite)
+
+Bad:
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    console.log("Clicked");
+  });
+});
+
+Problem:
+
+Many listeners.
+Doesn't work for newly added elements.
+
+Better:
+
+ul.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    console.log(e.target.textContent);
+  }
+});
+
+One listener handles all <li> elements.
+
+Even future ones.
+
+Real Todo Example
+list.addEventListener("click", (e) => {
+  if (e.target.matches(".delete")) {
+    e.target.parentElement.remove();
+  }
+});
+
+This pattern is everywhere in frontend interviews.
+
+Keyboard Shortcuts
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    console.log("Enter pressed");
+  }
+});
+if (e.ctrlKey && e.key === "s") {
+  e.preventDefault();
+  console.log("Save");
+}
+Form Example
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = input.value;
+
+  console.log(name);
+});
+Practical Mini Project
+<input id="input">
+<p id="text"></p>
+input.addEventListener("input", () => {
+  text.textContent = input.value;
+});
+
+This creates a live preview while typing.
+
+Interview Questions
+Difference between input and change?
+input → every keystroke.
+change → when editing is finished.
+Why use preventDefault()?
+
+To stop the browser's default behavior.
+
+What is event bubbling?
+
+The event propagates upward through ancestors.
+
+What is event delegation?
+
+Attaching one listener to a parent and handling child events using e.target.

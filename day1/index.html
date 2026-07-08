@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1 id="title"> DOM </h1>
+    <input id="myInput" type="text" placeholder="input">
+
+    <script>
+    //    let  n1=Math.floor(Math.random()*256)
+    //    let  n2=Math.floor(Math.random()*256)
+    //    let  n3=Math.floor(Math.random()*256)
+    //    let newcolor= `rgb(${n1} , ${n2} , ${n3})`;
+
+      
+    //     document.getElementById("title").style.color=newcolor;
+        
+        // or more simply you could do is 
+//         document.getElementById("title").style.color =
+//   `rgb(${Math.floor(Math.random()*256)},
+//        ${Math.floor(Math.random()*256)},
+//        ${Math.floor(Math.random()*256)})`;
+
+
+//      setInterval(() => {
+//         document.getElementById("title").style.color =
+//   `rgb(${Math.floor(Math.random()*256)},
+//        ${Math.floor(Math.random()*256)},
+//        ${Math.floor(Math.random()*256)})`;
+
+//      }, 1000);
+
+// creating Elements dynamically 
+
+// document.createElement("h1").innerText="hello world"; //wrong version 
+
+// you must have to store the reference to the element and then have to append in the DOM otherwise it won't effectively do anything 
+
+// let h1=document.createElement("h1");
+// h1.innerText="Hello World";
+// document.body.appendChild(h1)
+
+// second version 
+// document.body.appendChild(
+//   Object.assign(document.createElement("h1"), {
+//     innerText: "hello world"
+//   })
+// );
+
+// now create like this : 
+
+// <ul>
+//   <li>JavaScript</li>
+//   <li>Python</li>
+// </ul>
+
+// let u= document.createElement("ul")
+// let i1 = document.createElement("li");
+// i1.innerText="javascript"
+// u.appendChild(i1)
+// let i2 = document.createElement("li");
+// i2.innerText="Python "
+// u.appendChild(i2)
+
+// // now append the parent element  , as it is a must to append the parent element as well 
+
+// document.body.appendChild(u)
+
+
+
+// let h1 = document.createElement("h1");
+// h1.innerText = "Hello i am the title";
+
+// let u = document.createElement("ul");
+
+// let i1 = document.createElement("li");
+// i1.innerText = "Python";
+
+// u.appendChild(i1);
+
+// document.body.appendChild(h1);
+// document.body.appendChild(u);
+
+
+// EVENTS 
+
+let d1 = document.createElement("div");
+d1.innerText = "Hey I am a div";
+d1.style.height = "400px";
+d1.style.width = "400px";
+d1.style.border = "1px solid red";
+
+document.body.appendChild(d1);
+
+let b1 = document.createElement("button");
+b1.innerText = "Click me!";
+b1.style.padding = "10px";
+b1.style.marginTop = "4px";
+
+document.body.appendChild(b1);
+
+b1.addEventListener("click", () => {
+    d1.style.backgroundColor = "red";
+});
+
+
+
+//INPUTS 
+let input = document.querySelector("input");
+
+input.addEventListener("input", () => {
+  alert(input.value);
+});
+
+
+    </script>
+</body>
+</html>
