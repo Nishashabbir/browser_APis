@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localstorage</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border:  solid 1px red ;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+        .container{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div></div>
+
+
+    <input type="text"  id="name" placeholder="Enter your name : ">
+    <button id="save">SAVE </button>
+
+
+    <script>
+         let b = document.getElementById("save")
+         b.addEventListener("click" , ()=>{
+            const name= document.getElementById("name")
+localStorage.setItem("name" , name.value )
+
+
+// you can simply go and check in the console and can get the item or even write the code that prints the value directly in the console like this : 
+// const savedName = localStorage.getItem("name");
+// console.log(savedName);
+
+
+// Or display it automatically when the page loads:
+
+window.onload = () => {
+    const savedName = localStorage.getItem("name");
+
+    if (savedName) {
+        document.getElementById("name").value = savedName;
+    }
+};
+         })
+
+
+/////////////////TOPIC 2 : SESSION STORAGE 
+
+
+ const input = document.getElementById("city");
+
+document.getElementById("save").addEventListener("click", () => {
+  sessionStorage.setItem("city", input.value);
+});
+
+const savedCity = sessionStorage.getItem("city");
+
+if (savedCity) {
+  input.value = savedCity; //after refresh the previous values are still saved 
+
+//   NOTE : 
+//   This line:
+// input.value = savedCity;
+// fills the input with the value you previously saved.
+// Without it, the value is still in sessionStorage, but the user won't see it in the input.
+
+}
+
+
+// TOPIC 3 : INTERSECTION OBSERVER 
+
+let box = document.getElementsByClassName("box")
+let observer= new IntersectionObserver((enteries)=>{
+    console.log(enteries)
+})
+observer.observe(box)
+
+    </script>
+</body>
+</html>
