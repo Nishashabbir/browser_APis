@@ -1,7 +1,5 @@
 
 
-
-
 ///////////////////////////////////// CHAPTER 2 
 
 Methods that expect a string
