@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.card{
+    border: solid 1px red ;
+    width: 200px;
+    height: 200px;
+    transition: opacity 1s , transform 1s ;
+
+}
+
+.hidden{
+    opacity: 0;
+    transform: translateY(120px);
+}
+.show{
+    opacity: 1;
+    transform: translateY(0px);
+    background-color: pink;
+}
+
+    </style>
+</head>
+<body>
+    <!-- note that if you want transition from hidden state to show state then you have to apply the hidden class in the element and then when the element comes in the viewport then you can apply the show class to it and it will transition from hidden state to show state. -->
+<div class="card hidden ">I am a card </div> 
+<!-- what i want is to apply the .show class only when the element comes on viewport  -->
+
+<script>
+// as we are just working on the first element 
+let card = document.getElementsByClassName("card")[0] 
+
+let observe= new IntersectionObserver((entries)=>{
+    const entry = entries[0]
+    if (entry.isIntersecting){
+        card.classList.add("show")
+    }
+})
+
+observe.observe(card)
+
+</script>
+
+
+</body>
+</html>

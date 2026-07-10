@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntersectionObserver</title>
+    <style>
+        .hidden{
+            opacity: 0;
+            transform: translateY(100px);
+            /* translate y property is used to move the element along the y-axis. In this case, it moves the element down by 100 pixels. */
+        }
+        .box{
+            border: solid 1px red;
+            padding: 20px;
+            width: 200px;
+            height: 200px;
+            transition: opacity 1s, transform 1s;             /* transform 0.5s; this means that when the opacity or transform properties change, they will transition smoothly over 0.5 seconds. */
+/* load again and again and again to see the effect of transition property. */
+        }
+        .show{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box hidden"></div>
+<script>
+
+let b=document.querySelector(".box")
+// let b=document.getElementsByClassName("box")[0] we can also write like this , passing the first box as when we pass this as argument we are not passing the collection or array we are passing one element from html 
+let observe= new IntersectionObserver((entries)=>{
+    const entry = entries[0] //intersection observer can only take arrays as argument so we are taking the first element of the array and storing it in entry variable
+    if (entry.isIntersecting){
+b.classList.add("show")
+    }
+})
+
+observe.observe(b)
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
